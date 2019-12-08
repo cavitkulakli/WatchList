@@ -14,7 +14,27 @@ struct ContentView: View {
     @State var modalIsPresented = false
     
     var body: some View {
-            Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+            NavigationView {
+                List {
+                    ForEach(titleStore.prioritizedTitles) { index in
+                        SectionView(prioritizedTitles: self.$titleStore.prioritizedTitles[index])
+                    }
+                }
+                .listStyle( GroupedListStyle())
+                .navigationBarTitle("Tasks")
+                .navigationBarItems(
+                    leading: EditButton(),
+                    trailing:
+                    Button(
+                        action: { self.modalIsPresented = true }
+                    ) {
+                        Image(systemName: "plus")
+                    }
+                )
+            }
+            .sheet(isPresented: $modalIsPresented) {
+//                NewTaskView( taskStore: self.taskStore )
+            }
     }
     
     

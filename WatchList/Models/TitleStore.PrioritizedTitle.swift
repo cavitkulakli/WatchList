@@ -11,7 +11,6 @@ import Combine
 extension TitleStore {
     struct PrioritizedTitle {
         let priority: Title.Kind.Priority
-        let kind: Title.Kind
         var titles: [Title]
     }
 }

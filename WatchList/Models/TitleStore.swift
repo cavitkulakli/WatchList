@@ -13,7 +13,6 @@ class TitleStore: ObservableObject {
     @Published var prioritizedTitles = [
         PrioritizedTitle(
             priority: .high,
-            kind: .book,
             names: [
                 "Lord Of The Rings",
                 "Harry Potter"
@@ -21,7 +20,6 @@ class TitleStore: ObservableObject {
         ),
         PrioritizedTitle(
             priority: .low,
-            kind: .movie,
             names: [
                 "Lord Of The Rings",
                 "Harry Potter"
@@ -37,10 +35,9 @@ class TitleStore: ObservableObject {
 }
 
 private extension TitleStore.PrioritizedTitle {
-    init(priority: Title.Kind.Priority, kind: Title.Kind, names: [String]) {
+    init(priority: Title.Kind.Priority, names: [String]) {
         self.init(
             priority: priority,
-            kind: kind,
             titles: names.map { Title(name: $0)}
         )
     }
