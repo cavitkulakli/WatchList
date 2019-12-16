@@ -16,7 +16,7 @@ struct RowView: View {
     
     var body: some View {
         NavigationLink(
-            //destination: TaskEditingView( task: $task )
+            destination: TitleEditingView( title: $title )
         ) {
             if title.done {
                 checkmark
@@ -24,7 +24,7 @@ struct RowView: View {
                 checkmark.hidden()
             }
             Text(title.name)
-                .strikethrough(title.completed)
+                .strikethrough(title.done)
         }
     }
 }

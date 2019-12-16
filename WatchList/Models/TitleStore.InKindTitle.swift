@@ -6,4 +6,17 @@
 //  Copyright © 2019 Cavit KULAKLI. All rights reserved.
 //
 
-import Foundation
+import Combine
+
+extension KindStore {
+    
+    struct InKindTitle {
+        let kind: Title.Kind
+        var titles: [Title]
+    }
+    
+}
+
+extension KindStore.InKindTitle: Identifiable {
+    var id: Title.Kind { kind }
+}

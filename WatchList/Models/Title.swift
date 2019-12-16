@@ -11,6 +11,6 @@ import Foundation
 struct Title: Identifiable {
     let id = UUID()
     
-    let name: String
+    var name: String
     var done = false
 }

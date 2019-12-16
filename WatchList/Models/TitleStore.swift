@@ -24,6 +24,13 @@ class TitleStore: ObservableObject {
                 "Lord Of The Rings",
                 "Harry Potter"
             ]
+        ),
+        PrioritizedTitle(
+            priority: .no,
+            names: [
+                "Test Book",
+                "Test Movie"
+            ]
         )
     ]
     

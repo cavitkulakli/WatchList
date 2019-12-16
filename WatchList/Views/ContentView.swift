@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var titleStore: TitleStore
+    @ObservedObject var kindStore: KindStore
     
     @State var modalIsPresented = false
     
@@ -17,11 +18,11 @@ struct ContentView: View {
             NavigationView {
                 List {
                     ForEach(titleStore.prioritizedTitles) { index in
-                        SectionView(prioritizedTitles: self.$titleStore.prioritizedTitles[index])
+                        SectionView(prioritizedTitles: self.$titleStore.prioritizedTitles[index], inKindTitles: self.$kindStore.inKindTitle[index])
                     }
                 }
                 .listStyle( GroupedListStyle())
-                .navigationBarTitle("Tasks")
+                .navigationBarTitle("Titles")
                 .navigationBarItems(
                     leading: EditButton(),
                     trailing:
@@ -32,9 +33,9 @@ struct ContentView: View {
                     }
                 )
             }
-            .sheet(isPresented: $modalIsPresented) {
+//            .sheet(isPresented: $modalIsPresented) {
 //                NewTaskView( taskStore: self.taskStore )
-            }
+//            }
     }
     
     
@@ -42,6 +43,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView( titleStore: TitleStore() )
+        ContentView( titleStore: TitleStore(), kindStore: KindStore() )
     }
 }

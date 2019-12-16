@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            let contentView = ContentView( titleStore: TitleStore() )
+            let contentView = ContentView( titleStore: TitleStore(), kindStore: KindStore() )
             
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window

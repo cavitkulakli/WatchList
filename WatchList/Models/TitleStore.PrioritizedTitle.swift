@@ -1,5 +1,5 @@
 //
-//  TypeStore.PrioritizedTask.swift
+//  TitleStore.PrioritizedTitle.swift
 //  WatchList
 //
 //  Created by Cavit KULAKLI on 6.12.2019.
@@ -9,10 +9,12 @@
 import Combine
 
 extension TitleStore {
+    
     struct PrioritizedTitle {
         let priority: Title.Kind.Priority
         var titles: [Title]
     }
+    
 }
 
 
