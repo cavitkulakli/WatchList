@@ -7,10 +7,13 @@
 //
 
 import Combine
+import Foundation
 
 extension TitleStore {
-    
-    struct PrioritizedTitle {
+    struct PrioritizedInKindedTitle {
+        let id = UUID()
+        
+        let kind: Title.Kind
         let priority: Title.Kind.Priority
         var titles: [Title]
     }
@@ -18,6 +21,5 @@ extension TitleStore {
 }
 
 
-extension TitleStore.PrioritizedTitle: Identifiable {
-    var id: Title.Kind.Priority { priority }
-}
+
+

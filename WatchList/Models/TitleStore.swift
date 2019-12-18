@@ -10,22 +10,25 @@ import Combine
 
 class TitleStore: ObservableObject {
     
-    @Published var prioritizedTitles = [
-        PrioritizedTitle(
+    @Published var prioritizedInKindedTitles = [
+        PrioritizedInKindedTitle(
+            kind: .book,
             priority: .high,
             names: [
                 "Lord Of The Rings",
                 "Harry Potter"
             ]
         ),
-        PrioritizedTitle(
+        PrioritizedInKindedTitle(
+            kind: .movie,
             priority: .low,
             names: [
                 "Lord Of The Rings",
                 "Harry Potter"
             ]
         ),
-        PrioritizedTitle(
+        PrioritizedInKindedTitle(
+            kind: .series,
             priority: .no,
             names: [
                 "Test Book",
@@ -41,9 +44,10 @@ class TitleStore: ObservableObject {
     }
 }
 
-private extension TitleStore.PrioritizedTitle {
-    init(priority: Title.Kind.Priority, names: [String]) {
+private extension TitleStore.PrioritizedInKindedTitle {
+    init(kind: Title.Kind, priority: Title.Kind.Priority, names: [String]) {
         self.init(
+            kind: kind,
             priority: priority,
             titles: names.map { Title(name: $0)}
         )

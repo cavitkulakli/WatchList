@@ -10,16 +10,16 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var titleStore: TitleStore
-    @ObservedObject var kindStore: KindStore
     
     @State var modalIsPresented = false
     
     var body: some View {
             NavigationView {
                 List {
-                    ForEach(titleStore.prioritizedTitles) { index in
-                        SectionView(prioritizedTitles: self.$titleStore.prioritizedTitles[index], inKindTitles: self.$kindStore.inKindTitle[index])
-                    }
+//                    ForEach(titleStore.prioritizedInKindedTitles) { prioritizedInKindedTitle in
+//                        Section(content: prioritizedInKindedTitle)
+//                    }
+                    
                 }
                 .listStyle( GroupedListStyle())
                 .navigationBarTitle("Titles")
@@ -43,6 +43,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView( titleStore: TitleStore(), kindStore: KindStore() )
+        ContentView( titleStore: TitleStore() )
     }
 }
