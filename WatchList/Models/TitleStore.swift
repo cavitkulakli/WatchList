@@ -38,7 +38,7 @@ class TitleStore: ObservableObject {
     ]
     
     func getIndex(for priority: Title.Kind.Priority) -> Int {
-        prioritizedTitles.firstIndex {
+        prioritizedInKindedTitles.firstIndex {
             $0.priority == priority
         }!
     }

@@ -22,14 +22,14 @@ struct SectionView: View {
                     "\(prioritizedInKindedTitle.priority.rawValue.capitalized) Priority"
                 )
             ) {
-//                ForEach(prioritizedInKindedTitle.titles) { title in
-//                    RowView(title: title)
-//                }
+                ForEach(prioritizedInKindedTitle.titles) { index in
+                    RowView(title: self.$prioritizedInKindedTitle.titles[index])
+                }
                 .onMove { sourceIndices, destinationIndex in
-                    self.prioritizedTitles.titles.move(fromOffsets: sourceIndices, toOffset: destinationIndex)
+                    self.prioritizedInKindedTitle.titles.move(fromOffsets: sourceIndices, toOffset: destinationIndex)
                 }
                 .onDelete { indexSet in
-                    self.prioritizedTitles.titles.remove(atOffsets: indexSet)
+                    self.prioritizedInKindedTitle.titles.remove(atOffsets: indexSet)
                 }
             }
         }

@@ -16,10 +16,9 @@ struct ContentView: View {
     var body: some View {
             NavigationView {
                 List {
-//                    ForEach(titleStore.prioritizedInKindedTitles) { prioritizedInKindedTitle in
-//                        Section(content: prioritizedInKindedTitle)
-//                    }
-                    
+                    ForEach(titleStore.prioritizedInKindedTitles) { index in
+                        SectionView(prioritizedInKindedTitle: self.$titleStore.prioritizedInKindedTitles[index])
+                    }
                 }
                 .listStyle( GroupedListStyle())
                 .navigationBarTitle("Titles")

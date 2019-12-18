@@ -10,7 +10,7 @@ import Combine
 import Foundation
 
 extension TitleStore {
-    struct PrioritizedInKindedTitle {
+    struct PrioritizedInKindedTitle: Identifiable{
         let id = UUID()
         
         let kind: Title.Kind
