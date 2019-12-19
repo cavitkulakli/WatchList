@@ -12,16 +12,24 @@ struct ContentView: View {
     @ObservedObject var titleStore: TitleStore
     
     @State var modalIsPresented = false
+    @State var pickerSelection: Title.Kind = .Series
+    
     
     var body: some View {
+        
             NavigationView {
                 List {
+                    Picker("Kinds", selection: $pickerSelection) {
+                        ForEach(Title.Kind.allCases, id: \.self) { kind in
+                            Text(kind.rawValue).tag(kind)
+//                                .navigationBarTitle("\(self._pickerSelection)")
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
                     ForEach(titleStore.prioritizedInKindedTitles) { index in
                         SectionView(prioritizedInKindedTitle: self.$titleStore.prioritizedInKindedTitles[index])
                     }
                 }
                 .listStyle( GroupedListStyle())
-                .navigationBarTitle("Titles")
                 .navigationBarItems(
                     leading: EditButton(),
                     trailing:
@@ -31,13 +39,11 @@ struct ContentView: View {
                         Image(systemName: "plus")
                     }
                 )
+                
             }
-//            .sheet(isPresented: $modalIsPresented) {
-//                NewTaskView( taskStore: self.taskStore )
-//            }
+        
     }
-    
-    
+
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -8,6 +8,8 @@
 
 extension Title {
     enum Kind: String, CaseIterable {
-        case movie, series, book
+        case Movies, Series, Books
     }
+    
+
 }

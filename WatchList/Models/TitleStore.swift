@@ -12,15 +12,22 @@ class TitleStore: ObservableObject {
     
     @Published var prioritizedInKindedTitles = [
         PrioritizedInKindedTitle(
-            kind: .book,
-            priority: .high,
+            kind: .Books,
+            priority: .medium,
             names: [
                 "Lord Of The Rings",
                 "Harry Potter"
             ]
         ),
         PrioritizedInKindedTitle(
-            kind: .movie,
+            kind: .Movies,
+            priority: .medium,
+            names: [
+                "HellBoy"
+            ]
+        ),
+        PrioritizedInKindedTitle(
+            kind: .Movies,
             priority: .low,
             names: [
                 "Lord Of The Rings",
@@ -28,7 +35,7 @@ class TitleStore: ObservableObject {
             ]
         ),
         PrioritizedInKindedTitle(
-            kind: .series,
+            kind: .Series,
             priority: .no,
             names: [
                 "Test Book",
@@ -37,9 +44,9 @@ class TitleStore: ObservableObject {
         )
     ]
     
-    func getIndex(for priority: Title.Kind.Priority) -> Int {
+    func getIndex(for kind: Title.Kind) -> Int {
         prioritizedInKindedTitles.firstIndex {
-            $0.priority == priority
+            $0.kind == kind
         }!
     }
 }
