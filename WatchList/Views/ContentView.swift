@@ -22,7 +22,7 @@ struct ContentView: View {
                     Picker("Kinds", selection: $pickerSelection) {
                         ForEach(Title.Kind.allCases, id: \.self) { kind in
                             Text(kind.rawValue).tag(kind)
-//                                .navigationBarTitle("\(self._pickerSelection)")
+                                .navigationBarTitle("\(self.pickerSelection.rawValue)")
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                     ForEach(titleStore.prioritizedInKindedTitles) { index in
@@ -43,7 +43,30 @@ struct ContentView: View {
             }
         
     }
-
+    
+    //    func titleListReturner() -> View {
+    //                NavigationView {
+    //                    List {
+    //                        ForEach(titleStore.prioritizedInKindedTitles) { index in
+    //                            SectionView(prioritizedInKindedTitle: self.$titleStore.prioritizedInKindedTitles[index])
+    //                        }
+    //                    }
+    //                    .listStyle( GroupedListStyle())
+    //                    .navigationBarTitle("Titles")
+    //                    .navigationBarItems(
+    //                        leading: EditButton(),
+    //                        trailing:
+    //                        Button(
+    //                            action: { self.modalIsPresented = true }
+    //                        ) {
+    //                            Image(systemName: "plus")
+    //                        }
+    //                    )
+    //                }
+    //        //        .sheet(isPresented: $modalIsPresented) {
+    //        //            NewTaskView( taskStore: self.taskStore )
+    //        //        }
+    //    }
 }
 
 struct ContentView_Previews: PreviewProvider {
