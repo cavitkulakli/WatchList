@@ -12,61 +12,41 @@ struct ContentView: View {
     @ObservedObject var titleStore: TitleStore
     
     @State var modalIsPresented = false
-    @State var pickerSelection: Title.Kind = .Series
-    
+    @State var pickerSelection: Title.Kind = .Series    
     
     var body: some View {
-        
-            NavigationView {
+        NavigationView {
+            VStack {
+                Picker("Kinds", selection: $pickerSelection) {
+                    ForEach(Title.Kind.allCases, id: \.self) { kind in
+                        Text(kind.rawValue).tag(kind)
+                            .navigationBarTitle("\(self.pickerSelection.rawValue)")
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
                 List {
-                    Picker("Kinds", selection: $pickerSelection) {
-                        ForEach(Title.Kind.allCases, id: \.self) { kind in
-                            Text(kind.rawValue).tag(kind)
-                                .navigationBarTitle("\(self.pickerSelection.rawValue)")
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
                     ForEach(titleStore.prioritizedInKindedTitles) { index in
-                        SectionView(prioritizedInKindedTitle: self.$titleStore.prioritizedInKindedTitles[index])
+                        Group {
+                            if(self.titleStore.prioritizedInKindedTitles[index].kind == self.pickerSelection) {
+                            SectionView(prioritizedInKindedTitle: self.$titleStore.prioritizedInKindedTitles[index])
+                            }
+                        }
                     }
                 }
                 .listStyle( GroupedListStyle())
-                .navigationBarItems(
-                    leading: EditButton(),
-                    trailing:
-                    Button(
-                        action: { self.modalIsPresented = true }
-                    ) {
-                        Image(systemName: "plus")
-                    }
-                )
-                
             }
-        
+            .navigationBarItems(
+                leading: EditButton(),
+                trailing:
+                Button(
+                    action: { self.modalIsPresented = true }
+                ) {
+                    Image(systemName: "plus")
+                }
+            )
+            
+        }
     }
     
-    //    func titleListReturner() -> View {
-    //                NavigationView {
-    //                    List {
-    //                        ForEach(titleStore.prioritizedInKindedTitles) { index in
-    //                            SectionView(prioritizedInKindedTitle: self.$titleStore.prioritizedInKindedTitles[index])
-    //                        }
-    //                    }
-    //                    .listStyle( GroupedListStyle())
-    //                    .navigationBarTitle("Titles")
-    //                    .navigationBarItems(
-    //                        leading: EditButton(),
-    //                        trailing:
-    //                        Button(
-    //                            action: { self.modalIsPresented = true }
-    //                        ) {
-    //                            Image(systemName: "plus")
-    //                        }
-    //                    )
-    //                }
-    //        //        .sheet(isPresented: $modalIsPresented) {
-    //        //            NewTaskView( taskStore: self.taskStore )
-    //        //        }
-    //    }
 }
 
 struct ContentView_Previews: PreviewProvider {

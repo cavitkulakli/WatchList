@@ -12,11 +12,6 @@ struct SectionView: View {
     @Binding var prioritizedInKindedTitle: TitleStore.PrioritizedInKindedTitle
     
     var body: some View {
-//        Section (
-//            header: Text(
-//                "\(prioritizedInKindedTitle.kind.rawValue.capitalized) Kind"
-//            )
-//        ) {
             Section (
                 header: Text(
                     "\(prioritizedInKindedTitle.priority.rawValue.capitalized) Priority"
@@ -33,5 +28,4 @@ struct SectionView: View {
                 }
             }
         }
-//    }
 }
